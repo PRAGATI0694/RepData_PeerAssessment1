@@ -18,9 +18,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ## What is mean total number of steps taken per day?
-```{r echo = TRUE}
+```{r echo=TRUE, message=TRUE, include=TRUE}
 total_steps <- tapply(data$steps, data$date, FUN = sum, na.rm = TRUE)
 hist(total_steps, breaks = 30, xlab = "total number of steps taken each day", col ="yellow" , border = "black")
+
 mean(total_steps, na.rm = TRUE)
 
 median(total_steps, na.rm = TRUE)
@@ -32,8 +33,21 @@ median(total_steps, na.rm = TRUE)
 library(ggplot2)
 averages <- aggregate(x = list(steps = data$steps), by = list(interval = data$interval), FUN = mean, na.rm = TRUE)
 ggplot(data = averages, aes(x = interval, y = steps)) + geom_line(col = "red", lwd = 1) + xlab("5-minute interval") + 
-    ylab("average number of steps taken in a day") 
+    ylab("average number of steps taken in a day")
 ```
+
+
+## Imputing missing values
+```{r echo = TRUE}
+```{r echo = TRUE}
+
+
+## Are there differences in activity patterns between weekdays and weekends?
+```{r echo = TRUE}
+```{r echo = TRUE}
+
+```{r echo = TRUE}
+
 
 
 
