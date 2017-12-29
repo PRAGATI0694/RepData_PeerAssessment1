@@ -6,11 +6,17 @@ output:
 ---
 
 
-## Loading and preprocessing the data
+## Loading and preprocessing the data:
 
-
+data <- read.csv("activity.csv")
 
 ## What is mean total number of steps taken per day?
+
+total_steps <- tapply(data$steps, data$date, FUN = sum, na.rm = TRUE)
+hist(total_steps, breaks = 30, xlab = "total number of steps taken each day", col ="yellow" , border = "black")
+mean(total_steps, na.rm = TRUE)  #This gives the mean total no. of steps taken per day.
+
+median(total_steps, na.rm = TRUE)
 
 
 
