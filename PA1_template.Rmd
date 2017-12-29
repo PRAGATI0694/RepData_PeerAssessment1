@@ -63,7 +63,7 @@ averages[which.max(averages$steps), ]
 ## 104      835 206.2
 ```
 
-## Inputing missing values:
+## Imputing missing values:
 There are many days/intervals where there are missing values (coded as `NA`). The presence of missing days may introduce bias into some calculations or summaries of the data
 ```{r echo = TRUE}
 missing <- is.na(data$steps)
@@ -98,11 +98,52 @@ qplot(total_steps, binwidth = 1000, xlab = "total number of steps taken each day
 ```
 ![plot of chunk unnamed-chunk-8](Rplot3.png) 
 
+```{r echo = TRUE}
+mean(total_steps)
+```
+
+```
+## [1] 10766.19
+```
+
+```{r echo = TRUE}
+median(total_steps)
+```
+
+```
+## [1] 10766.19
+```
+
+Mean and median values are higher after imputing missing data. The reason is
+that in the original data, there are some days with `steps` values `NA` for 
+any `interval`. The total number of steps taken in such days are set to 0s by
+default. However, after replacing missing `steps` values with the mean `steps`
+of associated `interval` value, these 0 values are removed from the histogram
+of total number of steps taken each day.
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 ```{r echo = TRUE}
-
+weekday.or.weekend <- function(date) {
+    day <- weekdays(date)
+    if (day %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")) 
+        return("weekday") else if (day %in% c("Saturday", "Sunday")) 
+        return("weekend") else stop("invalid date")
+}
+filled.data$date <- as.Date(filled.data$date)
+filled.data$day <- sapply(filled.data$date, FUN = weekday.or.weekend)
 ```
+Now, let's make a plot containing  average number of steps taken
+on weekdays and weekends.
+
+
+```{r echo = TRUE}
+averages <- aggregate(steps ~ interval + day, data = filled.data, mean)
+ggplot(averages, aes(interval, steps)) + geom_line(col = "green" , lwd = 1) + facet_grid(day ~ .) + 
+    xlab("5-minute interval") + ylab("Number of steps")
+```
+![plot of chunk unnamed-chunk-12](Rplot4.png) 
+
 
 
 
