@@ -22,9 +22,6 @@ knitr::opts_chunk$set(echo = TRUE)
 total_steps <- tapply(data$steps, data$date, FUN = sum, na.rm = TRUE)
 hist(total_steps, breaks = 30, xlab = "total number of steps taken each day", col ="yellow" , border = "black")
 
-mean(total_steps, na.rm = TRUE)
-
-median(total_steps, na.rm = TRUE)
 ```
 !![plot of chunk unnamed-chunk-3](Rplot01.png)
 
