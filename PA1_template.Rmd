@@ -26,7 +26,7 @@ mean(total_steps, na.rm = TRUE)
 
 median(total_steps, na.rm = TRUE)
 ```
-!(Rplot01.png) 
+!![plot of chunk unnamed-chunk-3](Rplot01.png)
 
 
 ## What is the average daily activity pattern?
@@ -40,21 +40,12 @@ ggplot(data = averages, aes(x = interval, y = steps)) + geom_line(col = "red", l
 
 ## Imputing missing values
 ```{r echo = TRUE}
-```{r echo = TRUE}
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 ```{r echo = TRUE}
-```{r echo = TRUE}
-
-```{r echo = TRUE}
+```
 
 
 
-
-
-## Imputing missing values
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
