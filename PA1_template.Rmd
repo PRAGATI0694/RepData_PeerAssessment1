@@ -1,26 +1,40 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
+title: "reproducible research"
+author: "pragati"
+date: "December 29, 2017"
+output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-## Loading and preprocessing the data:
+## R Markdown
 
-data <- read.csv("activity.csv")
+## Loading and preprocessing the data
+```{r echo = TRUE}
+ data <- read.csv("activity.csv")
+```
+
 
 ## What is mean total number of steps taken per day?
-
+```{r echo = TRUE}
 total_steps <- tapply(data$steps, data$date, FUN = sum, na.rm = TRUE)
 hist(total_steps, breaks = 30, xlab = "total number of steps taken each day", col ="yellow" , border = "black")
-mean(total_steps, na.rm = TRUE)  #This gives the mean total no. of steps taken per day.
+mean(total_steps, na.rm = TRUE)
 
 median(total_steps, na.rm = TRUE)
-
+```
 
 
 ## What is the average daily activity pattern?
+```{r echo = TRUE}
+library(ggplot2)
+averages <- aggregate(x = list(steps = data$steps), by = list(interval = data$interval), FUN = mean, na.rm = TRUE)
+ggplot(data = averages, aes(x = interval, y = steps)) + geom_line(col = "red", lwd = 1) + xlab("5-minute interval") + 
+    ylab("average number of steps taken in a day")
+```
+
 
 
 
