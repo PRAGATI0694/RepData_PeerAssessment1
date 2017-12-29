@@ -23,7 +23,7 @@ total_steps <- tapply(data$steps, data$date, FUN = sum, na.rm = TRUE)
 hist(total_steps, breaks = 30, xlab = "total number of steps taken each day", col ="yellow" , border = "black")
 
 ```
-!![plot of chunk unnamed-chunk-3](Rplot01.png)
+![plot of chunk unnamed-chunk-3](Instruction_fig/Rplot01.png)
 
 
 ## What is the average daily activity pattern?
