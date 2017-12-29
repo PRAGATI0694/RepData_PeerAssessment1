@@ -26,6 +26,7 @@ mean(total_steps, na.rm = TRUE)
 
 median(total_steps, na.rm = TRUE)
 ```
+![plot of chunk unnamed-chunk-1](Rplot01.png) 
 
 
 ## What is the average daily activity pattern?
